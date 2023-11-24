@@ -1,4 +1,6 @@
-﻿using AHRestAPI.ModelsDTO;
+﻿using AHRestAPI.Mappers;
+using AHRestAPI.Models;
+using AHRestAPI.ModelsDTO;
 using AnimalHouseRestAPI.DataBase;
 using AnimalHouseRestAPI.Models;
 using AnimalHouseRestAPI.ModelsDTO;
@@ -23,7 +25,7 @@ namespace AHRestAPI.Controllers
             List<Order> orders = DataBaseConnection.Context.Orders.ToList().Where(x=>x.OrderId == orderid).ToList();
             if (orders != null)
             {
-                getDTO = OrderGetDTO.ConvertToGet(orders);
+                getDTO = OrdergetMapper.ConvertToGet(orders);
                 return Content(JsonConvert.SerializeObject(getDTO, mainSettings));
             }
             else
@@ -42,7 +44,7 @@ namespace AHRestAPI.Controllers
             List<Order> orders = DataBaseConnection.Context.Orders.ToList().Where(x => x.ClientId == clientid).ToList();
             if (orders != null)
             {
-                getDTO = OrderGetDTO.ConvertToGet(orders);
+                getDTO = OrdergetMapper.ConvertToGet(orders);
                 return Content(JsonConvert.SerializeObject(getDTO, mainSettings));
             }
             else
@@ -50,6 +52,25 @@ namespace AHRestAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        [Route("/orders/orderslist/")]
+        public ActionResult<List<OrderGetDTO>> GetOrdersList()
+        {
+
+            List<OrderGetDTO> getDTO = new List<OrderGetDTO>();
+            List<Order> orders = DataBaseConnection.Context.Orders.ToList();
+            if (orders != null)
+            {
+                getDTO = OrdergetMapper.ConvertToGet(orders);
+                return Content(JsonConvert.SerializeObject(getDTO, mainSettings));
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
 
         [HttpPut]
         [Route("/orders/statuschange/{orderid}/{statusid}")]
@@ -95,9 +116,9 @@ namespace AHRestAPI.Controllers
             }
             else
             {
-                orderdto.OrderNoteId = DataBaseConnection.Context.Orders.Count() + 1;
-                orderdto.OrderId = DataBaseConnection.Context.Orders.Count() + 1;
-                DataBaseConnection.Context.Orders.Add(OrderDTO.ConvertToOrder(orderdto));
+                orderdto.OrderNoteId = DataBaseConnection.Context.Orders.Max(x=>x.OrderNoteid) + 1;
+                orderdto.OrderId = DataBaseConnection.Context.Orders.Max(x=>x.OrderId) + 1;
+                DataBaseConnection.Context.Orders.Add(OrdergetMapper.ConvertToOrder(orderdto));
                 DataBaseConnection.Context.SaveChanges();
                 return Ok();
             }

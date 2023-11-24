@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "l03vQ28N4FZ6FVp/TMitVTdQ6lbA+4BRDZT3nmHZteqpH87+gXKgLf9CpL3+zA6mUiNGLKfJseoDWXwQzYSCcQ==",
+  "dgSpecHash": "lqnpZvjB9X5gyoF1HmpbcxQ2BK0T82ul8a60JrCfFF9VdT1ozCEjVkKoVAEP1NPXap6QawffxoLFRMfFnTop2g==",
   "success": true,
   "projectFilePath": "C:\\Users\\10a\\source\\repos\\AHRestAPI\\AHRestAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\10a\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\10a\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\10a\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\10a\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.3\\microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
+    "C:\\Users\\10a\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\10a\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.11\\microsoft.entityframeworkcore.7.0.11.nupkg.sha512",
     "C:\\Users\\10a\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.11\\microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",
     "C:\\Users\\10a\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.11\\microsoft.entityframeworkcore.analyzers.7.0.11.nupkg.sha512",

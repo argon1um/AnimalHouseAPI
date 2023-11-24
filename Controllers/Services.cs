@@ -1,4 +1,5 @@
-﻿using AnimalHouseRestAPI.DataBase;
+﻿using AHRestAPI.Models;
+using AnimalHouseRestAPI.DataBase;
 using AnimalHouseRestAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,5 @@
-﻿using AnimalHouseRestAPI.Models;
+﻿using AHRestAPI.Models;
+using AnimalHouseRestAPI.Models;
 
 namespace AnimalHouseRestAPI.DataBase
 {

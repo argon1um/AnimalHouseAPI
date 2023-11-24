@@ -1,4 +1,5 @@
-﻿using AnimalHouseRestAPI.DataBase;
+﻿using AHRestAPI.Models;
+using AnimalHouseRestAPI.DataBase;
 using AnimalHouseRestAPI.Models;
 using AnimalHouseRestAPI.ModelsDTO;
 using Microsoft.AspNetCore.Http;
@@ -12,7 +13,7 @@ namespace AHRestAPI.Controllers
     public class Clients : ControllerBase
     {
         [HttpPost]
-        [Route("/clients/auth/log")]
+        [Route("/clients/log")]
         public ActionResult<ClientRegistrationDTO> ClientAuthentification([FromBody] ClientDTO clientdto)
         {
             Client clreg = DataBaseConnection.Context.Clients.ToList().FirstOrDefault(x => x.ClientLogin == clientdto.Login && x.ClientPassword == clientdto.Password);
@@ -22,13 +23,13 @@ namespace AHRestAPI.Controllers
             }
             else
             {
-                return ClientRegistrationDTO.ClientConverter(clreg);
+                return Mappers.ClientRegistartionMapper.ClientConverter(clreg);
             }
         }
 
         [HttpPost]
-        [Route("/clients/auth/reg")]
-        public ActionResult<Client> ClientRegistration([FromBody] ClientRegistrationDTO clientregdto)
+        [Route("/clients/reg")]
+        public ActionResult<ClientRegistrationDTO> ClientRegistration([FromBody] ClientRegistrationDTO clientregdto)
         {
             if (clientregdto != null)
             {
@@ -40,12 +41,12 @@ namespace AHRestAPI.Controllers
                         return Conflict();
                     }
                 }
-                clientregdto.ID = DataBaseConnection.Context.Clients.Count()+1;
-                DataBaseConnection.Context.Clients.Add(ClientRegistrationDTO.ClientConverter(clientregdto));
+                clientregdto.ID = DataBaseConnection.Context.Clients.Max(x => x.ClientId)+1;
+                DataBaseConnection.Context.Clients.Add(Mappers.ClientRegistartionMapper.ClientConverter(clientregdto));
                 DataBaseConnection.Context.SaveChanges();
                 return Ok();
             }
-            else { return BadRequest(); }
+            else { return BadRequest("Woops!"); }
         }
     }
 }

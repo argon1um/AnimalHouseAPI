@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AnimalHouseRestAPI.Models;
+namespace AHRestAPI.Models;
 
 public partial class Order
 {
@@ -23,6 +23,10 @@ public partial class Order
 
     public int? OrderStatusid { get; set; }
 
+    public int? ServiceId { get; set; }
+
+    public int? TotalPrice { get; set; }
+
     public virtual Animal? Animal { get; set; }
 
     public virtual Client? Client { get; set; }
@@ -30,6 +34,8 @@ public partial class Order
     public virtual OrderStatus? OrderStatus { get; set; }
 
     public virtual Room? Room { get; set; }
+
+    public virtual Service? Service { get; set; }
 
     public virtual Worker? Worker { get; set; }
 }
